@@ -64,6 +64,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'config.urls'
 
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -92,6 +94,26 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+# PostgreSQL 
+# [USER, PASS, NAME, HOST]
+# POSTGRES_SETTINGS = json.loads(get_env_variable('JKGEO_PG_SETTINGS'))
+
+# pg_user = POSTGRES_SETTINGS[0]
+# pg_pass = POSTGRES_SETTINGS[1]
+# db_name = POSTGRES_SETTINGS[2]
+# pg_host = POSTGRES_SETTINGS[3]
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.contrib.gis.db.backends.postgis',
+#         'NAME': db_name,
+#         'USER': pg_user,
+#         'PASSWORD': pg_pass,
+#         'HOST': pg_host,
+#         'PORT': '',
+#     }
+# }
 
 
 # Password validation
@@ -131,3 +153,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
