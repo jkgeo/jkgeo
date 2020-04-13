@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block menu %}
+	<div class="ui four item secondary menu">
+		<a class="header selected item" href="{% url 'home' %}">home</a>
+		<a class="header item" href="{% url 'projects' %}">projects</a>
+		<a class="header item" href="{% url 'posts' %}">posts</a>
+		<a class="header item" href="">resume</a>
+	</div>
+{% endblock menu %}
+
+{% block body %}
+
+<div class="ui centered grid">
+	<div class="center aligned home column">
+		<h3>Hi, I'm John.</h3>
+		<p>I work with geospatial data.</p>
+	</div>
+</div>
+
+{% endblock body %}

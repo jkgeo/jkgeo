@@ -1,0 +1,26 @@
+/*main.css*/
+
+/*.main-content {
+	height: 85%;
+	padding-top: 5em !important;
+}*/
+
+.selected.item {
+	text-decoration: underline !important;
+}
+
+a {
+	color: black;
+}
+
+a:hover, a.item:hover {
+	color: red !important;
+	background-color: white !important; 
+}
+
+.footer {
+	position: absolute;
+	bottom: 1em;
+	width: 100% !important;
+	margin: 0 !important;
+}

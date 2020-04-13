@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block menu %}
+	<div class="ui four item secondary menu">
+		<a class="header item" href="{% url 'home' %}">home</a>
+		<a class="header selected item" href="{% url 'projects' %}">projects</a>
+		<a class="header item" href="{% url 'posts' %}">posts</a>
+		<a class="header item" href="">resume</a>
+	</div>
+{% endblock menu %}
+
+{% block body %}
+
+<div class="ui centered grid">
+	<div class="ui row">
+	<h3>Things I'm working on.</h3>
+</div>
+</div>
+
+
+<div class="ui three stackable cards">
+<!-- 	<a class="ui card" href="http://www.dog.com">
+	  <div class="content">
+	    <div class="header">Cute Dog</div>
+	    <div class="meta">
+	      <span class="category">Animals</span>
+	    </div>
+	    <div class="description">
+	      <p></p>
+	    </div>
+	  </div>
+	</a>
+ -->
+
+</div>
+{% endblock body %}

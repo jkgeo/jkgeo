@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block menu %}
+	<div class="ui four item secondary menu">
+		<a class="header item" href="{% url 'home' %}">home</a>
+		<a class="header item" href="{% url 'projects' %}">projects</a>
+		<a class="header selected item" href="{% url 'posts' %}">posts</a>
+		<a class="header item" href="">resume</a>
+	</div>
+{% endblock menu %}
+
+{% block body %}
+<h3>Coming Soon</h3>
+{% endblock body %}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html>
+
+<head>
+	{% block head %}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{% block title %}jkgeo{% endblock %}</title>
+
+	{% block stylesheets %}
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'core/style/main.css' %}">
+	{% endblock stylesheets %}
+
+	{% endblock head %}
+</head>
+
+<body>
+
+{% block menu %}
+	<div class="ui four item secondary menu">
+		<a class="header item" href="{% url 'home' %}">home</a>
+		<a class="header item" href="{% url 'projects' %}">projects</a>
+		<a class="header item" href="{% url 'posts' %}">posts</a>
+		<a class="header item" href="">resume</a>
+	</div>
+{% endblock menu %}
+
+	<div class="ui main-content container">
+	{% block body %}
+	{% endblock body %}
+	</div>
+
+{% block footer %}
+	<div class="ui footer centered grid">
+		<a class="" href="mailto:jfkeniston@gmail.com">
+		  <i class="envelope icon"></i>
+		</a>
+		<a class="" href="https://www.linkedin.com/in/john-f-keniston" target="_blank">
+		  <i class="linkedin icon"></i>
+		</a>
+		<a class="" href="https://github.com/jkgeo" target="_blank">
+		  <i class="github icon"></i>
+		</a>
+		<a class="" href="https://twitter.com/jkgeospatial" target="_blank">
+		  <i class="twitter icon"></i>
+		</a>
+		<a class="" href="https://geog.umd.edu/" target="_blank">🐢</a>
+	</div>
+{% endblock footer %}
+
+</body>
+
+{% block javascript %}
+<script
+src="https://code.jquery.com/jquery-3.1.1.min.js"
+integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+{% endblock javascript %}
+
+</html>
