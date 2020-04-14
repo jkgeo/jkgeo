@@ -20,19 +20,20 @@
 </div>
 
 
-<div class="ui three stackable cards">
-<!-- 	<a class="ui card" href="http://www.dog.com">
+<div class="ui centered three stackable cards">
+	{% for project in projects %}
+	<a class="ui card" href="http://www.dog.com">
 	  <div class="content">
-	    <div class="header">Cute Dog</div>
+	    <div class="header">{{ project.name }}</div>
 	    <div class="meta">
-	      <span class="category">Animals</span>
+	      <span class="category">{{ project.type }}</span>
 	    </div>
 	    <div class="description">
-	      <p></p>
+	      <p>{{ project.description }}</p>
 	    </div>
 	  </div>
 	</a>
- -->
-
+	{% endfor %}
 </div>
+
 {% endblock body %}

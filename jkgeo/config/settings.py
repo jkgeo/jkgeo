@@ -10,8 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
-import os
-
+import os, json
+import osgeo
 # Normally you should not import ANYTHING from Django directly
 # into your settings, but ImproperlyConfigured is an exception.
 from django.core.exceptions import ImproperlyConfigured
@@ -53,7 +53,6 @@ INSTALLED_APPS = [
     'core',
     'newsletter',
     'posts',
-    'projects'
 ]
 
 MIDDLEWARE = [
@@ -92,32 +91,33 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+# SQLite
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 # PostgreSQL 
 # [USER, PASS, NAME, HOST]
-# POSTGRES_SETTINGS = json.loads(get_env_variable('JKGEO_PG_SETTINGS'))
+POSTGRES_SETTINGS = json.loads(get_env_variable('JKGEO_PG_SETTINGS'))
 
-# pg_user = POSTGRES_SETTINGS[0]
-# pg_pass = POSTGRES_SETTINGS[1]
-# db_name = POSTGRES_SETTINGS[2]
-# pg_host = POSTGRES_SETTINGS[3]
+pg_user = POSTGRES_SETTINGS[0]
+pg_pass = POSTGRES_SETTINGS[1]
+db_name = POSTGRES_SETTINGS[2]
+pg_host = POSTGRES_SETTINGS[3]
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-#         'NAME': db_name,
-#         'USER': pg_user,
-#         'PASSWORD': pg_pass,
-#         'HOST': pg_host,
-#         'PORT': '',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': db_name,
+        'USER': pg_user,
+        'PASSWORD': pg_pass,
+        'HOST': pg_host,
+        'PORT': '',
+    }
+}
 
 
 # Password validation
@@ -158,3 +158,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+"""
+GDAL SETTINGS
+"""
+
+# For Windows
+
+GDAL_ROOT = os.path.dirname(osgeo.__file__)
+os.environ['GDAL_DATA'] = os.path.join(GDAL_ROOT, 'data', 'gdal')
+os.environ['PROJ_LIB'] = os.path.join(GDAL_ROOT, 'data', 'proj')
+os.environ['PATH'] = GDAL_ROOT + ';' + os.environ['PATH']
+GDAL_LIBRARY_PATH = os.path.join(GDAL_ROOT, 'gdal204.dll')
