@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block menu %}
+	<div class="ui four item secondary menu">
+		<a class="header item" href="{% url 'home' %}">home</a>
+		<a class="header item" href="{% url 'projects' %}">projects</a>
+		<a class="header item" href="{% url 'posts' %}">posts</a>
+		<a class="header item" href="">resume</a>
+	</div>
+{% endblock menu %}
+
+{% block body %}
+<div class="ui piled segment">
+	<div class="ui items">
+{% if recipe %}
+	<div class="ui item">
+	    <div class="small image">
+	        <img src="{{ recipe.photo.url }}">
+	    </div>
+	    <div class="content">
+	      <a class="header">{{ recipe.title }}</a>
+
+	      <div class="description">
+	      	<h4>{{recipe.cuisine}}</h4>
+	  	  </div>
+	      
+	      <div class="meta">
+	        <span>Description</span>
+	      </div>
+	      <div class="description">
+	        <p>{{ recipe.description }}</p>
+	      </div>
+	      <div class="meta">
+	        <span>Ingredients</span>
+	      </div>
+	      <div class="description">
+	        <div class="ui bulleted list">
+	        	{% for detail in details %}
+	        		<div class="item">
+	        			{{detail.ingredient.name}} - {{detail.quantity.value}} {% if detail.quantity.unit %} {{detail.quantity.unit}} {% endif %}
+	        		</div>
+	        	{% endfor %}
+	        </div>
+	      </div>
+	      <div class="meta">
+	        <span>Instructions</span>
+	      </div>
+	      <div class="description">
+	      	<div class="ui ordered list">
+      		{% for step in steps %}
+      			<div class="item">{{ step.step }}</div>
+      		{% endfor %}
+      		</div>
+	      </div>
+	      {% if notes %}
+	      <div class="meta">
+	        Notes
+	      </div>
+	      <div class="description">
+	        <div class="ui bulleted list">
+	        	{% for note in notes %}
+	        	<div class="item">{{ note.note}}</div>
+	        	{% endfor %}	        		
+	        </div>
+	      </div>
+	      {% endif %}
+	      <div class="meta">
+	        Link
+	      </div>
+	      <div class="description">
+	        <a href="{{ recipe.link }}"><p>{{ recipe.link }}</p></a>
+	      </div>
+	    </div>
+	</div>
+{% else %}
+	<div class="item">
+		This recipe does not exist.
+	</div>
+{% endif %}
+	</div>
+</div>
+{% endblock body %}

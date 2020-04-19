@@ -21,8 +21,9 @@
 
 
 <div class="ui centered three stackable cards">
+	{% if projects %}
 	{% for project in projects %}
-	<a class="ui card" href="http://www.dog.com">
+	<a class="ui raised card" href="/projects/{{ project.name|lower }}">
 	  <div class="content">
 	    <div class="header">{{ project.name }}</div>
 	    <div class="meta">
@@ -34,6 +35,11 @@
 	  </div>
 	</a>
 	{% endfor %}
+	{% else %}
+	<div class="ui segment">
+		No Projects Available
+	</div>
+	{% endif %}
 </div>
 
 {% endblock body %}

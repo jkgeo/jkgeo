@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block menu %}
+	<div class="ui four item secondary menu">
+		<a class="header item" href="{% url 'home' %}">home</a>
+		<a class="header item" href="{% url 'projects' %}">projects</a>
+		<a class="header item" href="{% url 'posts' %}">posts</a>
+		<a class="header item" href="">resume</a>
+	</div>
+{% endblock menu %}
+
+{% block body %}
+
+<div class="ui centered three stackable cards">
+
+{% for recipe in recipes %}
+	<a class="ui raised card" href="/projects/recipes/{{recipe.slug}}">
+		<div class="image">
+		  <img src="{{ recipe.photo.url }}">
+		</div>
+		<div class="content">
+			<div class="header">{{ recipe.title }}</div>
+			<div class="meta">
+				<span>{{ recipe.cuisine }}</span>
+			</div>
+			<!-- <div class="description">
+				<p>{{ recipe.description }}</p>
+			</div> -->
+			<div class="extra">
+				Added: {{ recipe.added }}
+			</div>
+		</div>
+	</a>
+{% endfor %}
+</div>
+{% endblock body %}

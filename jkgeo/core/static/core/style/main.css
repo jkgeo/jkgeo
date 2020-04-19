@@ -19,8 +19,22 @@ a:hover, a.item:hover {
 }
 
 .footer {
-	position: absolute;
-	bottom: 1em;
+/*	position: absolute;
+	bottom: 1em;*/
 	width: 100% !important;
 	margin: 0 !important;
+	padding: 1em !important;
+}
+
+.meta {
+	padding-top: 0.5em;
+	text-decoration: underline;
+}
+
+.underline {
+	text-decoration: underline;
+}
+
+.italic {
+	font-style: italic;
 }
