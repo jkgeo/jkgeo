@@ -1,4 +1,9 @@
 asgiref==3.2.7
 Django==3.0.5
+GDAL==2.4.1
+geographiclib==1.50
+geopy==1.21.0
+Pillow==7.1.1
+psycopg2==2.8.5
 pytz==2019.3
 sqlparse==0.3.1
