@@ -43,8 +43,26 @@ class Ingredient(models.Model):
         return self.name
 
 class Recipe(models.Model):
+    BREAKFAST = 1
+    LUNCH = 2
+    DINNER = 3
+    SIDE = 4
+    SNACK = 5
+
+    RECIPE_CATEGORY_CHOICES = [
+        (BREAKFAST, 'Breakfast'),
+        (LUNCH, 'Lunch'),
+        (DINNER, 'Dinner'),
+        (SIDE, 'Side'),
+        (SNACK, 'Snack')
+    ]
+    
     title = models.CharField(max_length=255)    
     cuisine = models.ForeignKey(Cuisine, on_delete=models.SET_NULL, null=True, blank=True)
+    category = models.IntegerField(
+        choices=RECIPE_CATEGORY_CHOICES,
+        null=True
+    )
     description = models.TextField()
     ingredients = models.ManyToManyField(Ingredient, through='Quantity')
     slug = models.SlugField(null=True, blank=True)

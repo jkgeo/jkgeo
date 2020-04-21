@@ -29,7 +29,7 @@
 				<p>{{ recipe.description }}</p>
 			</div> -->
 			<div class="extra">
-				Added: {{ recipe.added }}
+				<i class="calendar icon"></i>{{ recipe.added | date:"M d, Y"}}
 			</div>
 		</div>
 	</a>
