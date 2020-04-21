@@ -25,9 +25,9 @@
 			<div class="meta">
 				<span>{{ recipe.cuisine }}</span>
 			</div>
-			<!-- <div class="description">
-				<p>{{ recipe.description }}</p>
-			</div> -->
+			<div class="description">
+				<p>{{ recipe.get_category_display }}</p>
+			</div>
 			<div class="extra">
 				<i class="calendar icon"></i>{{ recipe.added | date:"M d, Y"}}
 			</div>

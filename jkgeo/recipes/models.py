@@ -9,12 +9,14 @@ class Cuisine(models.Model):
     def __str__(self):
         return self.name
 
+
 class UnitsOfMeasure(models.Model):
     name = models.CharField(max_length=128)
     abbreviation = models.CharField(max_length=8)
 
     def __str__(self):
         return self.abbreviation
+
 
 class Ingredient(models.Model):
     VEGETABLES = 'V'
@@ -42,6 +44,14 @@ class Ingredient(models.Model):
     def __str__(self):
         return self.name
 
+
+class Equipment(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+
 class Recipe(models.Model):
     BREAKFAST = 1
     LUNCH = 2
@@ -56,7 +66,7 @@ class Recipe(models.Model):
         (SIDE, 'Side'),
         (SNACK, 'Snack')
     ]
-    
+
     title = models.CharField(max_length=255)    
     cuisine = models.ForeignKey(Cuisine, on_delete=models.SET_NULL, null=True, blank=True)
     category = models.IntegerField(
@@ -65,6 +75,7 @@ class Recipe(models.Model):
     )
     description = models.TextField()
     ingredients = models.ManyToManyField(Ingredient, through='Quantity')
+    equipment = models.ManyToManyField(Equipment, blank=True)
     slug = models.SlugField(null=True, blank=True)
     added = models.DateTimeField(editable=False)
     modified = models.DateTimeField()
