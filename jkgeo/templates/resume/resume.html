@@ -1,0 +1,308 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block menu %}
+	<div class="ui four item secondary menu">
+		<a class="header item" href="{% url 'home' %}">home</a>
+		<a class="header item" href="{% url 'projects' %}">projects</a>
+		<a class="header item" href="{% url 'posts' %}">posts</a>
+		<a class="header selected item" href="{% url 'resume' %}">resume</a>
+	</div>
+{% endblock menu %}
+
+{% block body %}
+<div class="ui stackable two column grid container">
+
+	<div class="ui centered row">
+		<div class="ui centered john grid">
+			<div class="ui row">
+				<div class="ui small statistic">
+				  <div class="value">
+				    John F. Keniston
+				  </div>
+				  <div class="label">
+				    Geospatial Data Professional
+				  </div>
+				  <div class="ui divider"></div>
+				  <div class="label">
+				    <a class="" href="mailto:jfkeniston@gmail.com">jfkeniston@gmail.com</a>
+				  </div>				  
+				</div>
+			</div>
+			{% for doc in docs %}			
+			<a class="ui black label" href="{{doc.file.url}}" target="_blank"><i class="download icon"></i>{{doc.name}}</a>
+			{% endfor %}
+		</div>
+	</div>
+	
+	<div class="ui centered row">
+		<div class="ui fourteen wide column">
+			<div class="ui divided education items">
+
+				<div class="ui mini statistic">
+				  <div class="value">
+				  	Education
+				  </div>
+				</div>
+
+			{% for degree in degrees %}
+
+				<div class="item">
+					<div class="ui tiny image">
+						<img src="{% if degree.uni.logo %}{{ degree.uni.logo.url }}{% endif %}">
+					</div>
+					<div class="content">
+						<div class="header">{{ degree.type }} {{ degree.major }}</div>
+						<span class="ui right floated">{{ degree.awarded|date:"F, Y" }}</span>
+						<div class=""> 
+							<span class="">{{ degree.uni.name }}</span>       
+							<span class="ui right floated">{{ degree.uni.city }}, {{ degree.uni.state }}</span>
+						</div>
+						<div class="description">
+						    <div>
+						    	<!-- <span class="">{{ degree.major }}</span> -->
+						    </div>
+						</div>
+						<div class="extra">
+						</div>
+					</div>
+				</div>
+
+			{% endfor %}
+
+			</div>
+		</div>
+	</div>
+
+	<div class="ui row">
+		<div class="twelve wide column">
+			<div class="ui divided employment items">
+
+				<div class="ui mini statistic">
+				  <div class="value">
+				  	Employment
+				  </div>
+				</div>
+
+			{% for job in jobs %}
+				{% if job.job.relevant %}
+				<div class="item">
+					<div class="ui tiny image">
+						<img src="{% if job.logo %}{{ job.logo.url }}{% endif %}">
+					</div>
+					<div class="content">
+						<div class="header">{{ job.job.title }}</div>
+						<div class="ui right floated">
+							{{job.job.start | date:"F, Y"}} - {% if job.job.current %}Present
+							{% else %}{{job.job.end | date:"F, Y"}}{% endif %}
+						</div>
+						<div class="meta">
+							<span class="">{{ job.employer.name }}</span>
+							<span class="ui right floated">{{ job.employer.city }}, {{ job.employer.state }}</span>
+							
+						</div>
+						{% if job.employer.desc %}
+								<div class="extra">{{job.employer.desc}}</div>
+						{% endif %}
+						<div class="description">
+							<div class="ui bulleted list">
+							{% for accomplishment in job.accomplishments %}
+								<div class="item">{{ accomplishment }}</div>
+							{% endfor %}
+							</div>
+						</div>
+						<div class="extra">
+							{% for resource in job.resources %}
+								<a class="ui red label" href="{{resource.link}}" target="_blank">{{resource.name}}</a>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+				{% endif %}
+			{% endfor %}
+
+			<div class="ui fluid accordion">
+				  <div class="title">
+				    <i class="dropdown icon"></i>
+				    <div class="ui mini statistic">
+				      <div class="label">
+				    Older / Not as Relevant Experience
+				      </div>
+				    </div>
+				  </div>
+				  <div class="content">
+				  	<div class="ui divided old-employment items">
+				  	{% for job in jobs %}
+				  	{% if not job.job.relevant %}
+				    <!-- <p class="transition visible" style="display: block !important;"> -->
+				    	<div class="item">
+				    		<div class="ui tiny image">
+				    			<img src="{% if job.logo %}{{ job.logo.url }}{% endif %}">
+				    		</div>
+				    		<div class="content">
+				    			<div class="header">{{ job.job.title }}</div>
+				    			<div class="ui right floated">
+				    				{{job.job.start | date:"F, Y"}} - {% if job.job.current %}Present
+				    				{% else %}{{job.job.end | date:"F, Y"}}{% endif %}
+				    			</div>
+				    			<div class="meta">
+				    				<span class="">{{ job.employer.name }}</span>
+				    				<span class="ui right floated">{{ job.employer.city }}, {{ job.employer.state }}</span>
+				    				
+				    			</div>
+				    			{% if job.employer.desc %}
+				    					<div class="extra">{{job.employer.desc}}</div>
+				    			{% endif %}
+				    			<div class="description">
+				    				<div class="ui bulleted list">
+				    				{% for accomplishment in job.accomplishments %}
+				    					<div class="item">{{ accomplishment }}</div>
+				    				{% endfor %}
+				    				</div>
+				    			</div>
+				    			<div class="extra">
+				    				{% for resource in job.resources %}
+				    					<a class="ui red label" href="{{resource.link}}" target="_blank">{{resource.name}}</a>
+				    				{% endfor %}
+				    			</div>
+				    		</div>
+				    	</div>
+				    <!-- </p> -->
+
+				    {% endif %}
+				    {% endfor %}
+				  </div>
+				</div>
+			</div>
+		</div>
+		</div>
+		<div class="four wide column">
+
+			<div class="ui divided skills items">
+				<div class="ui mini statistic">
+				  <div class="value">
+				  	Some Skills
+				  </div>
+				</div>
+				{% for category in skills %}
+				<div class="item">
+					<div class="content">
+						<div class="header"><i class="{{ category.category.icon }} icon"></i> {{ category.category.name }}</div>
+						<div class="description">
+							{% for skill in category.skills %}
+								{% if forloop.last %}
+								<span class="">{{ skill.name }}</span>
+								{% else %}
+								<span class="">{{ skill.name }} |</span>
+								{% endif %}
+							
+							{% endfor %}							
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
+	<div class="ui centered row">
+		<div class="ui fourteen wide column">
+			<div class="ui divided education items">
+
+				<div class="ui mini statistic">
+				  <div class="value">
+				  	Committees, Professional, & Campus Service
+				  </div>
+				</div>
+
+			{% for position in service %}
+
+				<div class="item">
+					<div class="ui tiny image">
+						<img src="{% if position.employer.logo %}{{ position.employer.logo.url }}{% endif %}">
+					</div>
+					<div class="content">
+						<div class="header">{{ position.title }}</div>
+						<div class="ui right floated">
+							{{position.start | date:"F, Y"}} - {% if position.current %}Present
+							{% else %}{{position.end | date:"F, Y"}}{% endif %}
+						</div>
+						<div class=""> 
+							<span class="meta">{{ position.employer.name }}</span>       
+							<span class="ui right floated">{{ position.employer.city }}, {{ position.employer.state }}</span>
+						</div>
+						<div class="">
+						    <div>
+						    	<span class="">{{ position.desc }}</span>
+						    </div>
+						</div>
+						<div class="extra">
+						</div>
+					</div>
+				</div>
+
+			{% endfor %}
+
+			</div>
+		</div>
+	</div>
+
+	<div class="ui centered row">
+		<div class="ui fourteen wide column">
+			<div class="ui presentation items">
+
+				<div class="ui mini statistic">
+				  <div class="value">
+				  	Conference Presentations
+				  </div>
+				</div>
+				<div class="ui divider marginless"></div>
+			{% for presentation in presies %}
+
+				<div class="item">
+					<div class="content">
+						<div class="citation description">
+							{{presentation.citation}}
+						</div>
+					</div>
+				</div>
+
+			{% endfor %}
+
+			</div>
+		</div>
+	</div>
+	<div class="ui centered row">
+		<div class="ui fourteen wide column">
+			<div class="ui nonref-publication items">
+
+				<div class="ui mini statistic">
+				  <div class="value">
+				  	Non-Refereed Publications
+				  </div>
+				</div>
+				<div class="ui divider marginless"></div>
+			{% for pub in pubs %}
+
+				<div class="item">
+					<div class="content">
+						<div class="citation description">
+							{% if not pub.refereed %}
+							{{pub.citation}}
+							{% endif %}
+						</div>
+					</div>
+				</div>
+
+			{% endfor %}
+
+			</div>
+		</div>
+	</div>
+</div>
+<div class="ui centered three stackable cards">
+
+</div>
+
+{% endblock body %}

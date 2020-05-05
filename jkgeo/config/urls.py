@@ -23,6 +23,7 @@ urlpatterns = [
     path('', include('core.urls')),
     path('posts/', include('posts.urls')),
     path('newsletter/', include('newsletter.urls')),
+    path('resume/', include('resume.urls')),
     path('projects/beers/', include('beers.urls')),
     path('projects/recipes/', include('recipes.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

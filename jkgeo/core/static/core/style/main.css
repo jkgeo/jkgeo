@@ -1,10 +1,5 @@
 /*main.css*/
 
-/*.main-content {
-	height: 85%;
-	padding-top: 5em !important;
-}*/
-
 .selected.item {
 	text-decoration: underline !important;
 }
@@ -24,6 +19,7 @@ a:hover, a.item:hover {
 	width: 100% !important;
 	margin: 0 !important;
 	padding: 1em !important;
+	margin-top: 2em !important;
 }
 
 .meta {
@@ -37,4 +33,16 @@ a:hover, a.item:hover {
 
 .italic {
 	font-style: italic;
+}
+
+.citation {
+    padding-left: 2em;
+    text-indent: -2em;
+}
+.citation.row {
+	width: 80;
+}
+
+.marginless {
+	margin: 0 !important;
 }
