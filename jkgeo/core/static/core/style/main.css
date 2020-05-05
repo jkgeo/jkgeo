@@ -46,3 +46,7 @@ a:hover, a.item:hover {
 .marginless {
 	margin: 0 !important;
 }
+
+.docs {
+	margin-bottom: 1em;
+}

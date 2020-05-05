@@ -30,14 +30,16 @@
 				  </div>				  
 				</div>
 			</div>
-			{% for doc in docs %}			
-			<a class="ui black label" href="{{doc.file.url}}" target="_blank"><i class="download icon"></i>{{doc.name}}</a>
-			{% endfor %}
+			<div class="docs">
+				{% for doc in docs %}			
+				<a class="ui black label" href="{{doc.file.url}}" target="_blank"><i class="download icon"></i>{{doc.name}}</a>
+				{% endfor %}
+			</div>
 		</div>
 	</div>
 	
 	<div class="ui centered row">
-		<div class="ui fourteen wide column">
+		<div class="ui sixteen wide column">
 			<div class="ui divided education items">
 
 				<div class="ui mini statistic">
@@ -207,7 +209,7 @@
 	</div>
 
 	<div class="ui centered row">
-		<div class="ui fourteen wide column">
+		<div class="ui sixteen wide column">
 			<div class="ui divided education items">
 
 				<div class="ui mini statistic">
@@ -249,7 +251,7 @@
 	</div>
 
 	<div class="ui centered row">
-		<div class="ui fourteen wide column">
+		<div class="ui sixteen wide column">
 			<div class="ui presentation items">
 
 				<div class="ui mini statistic">
@@ -274,7 +276,7 @@
 		</div>
 	</div>
 	<div class="ui centered row">
-		<div class="ui fourteen wide column">
+		<div class="ui sixteen wide column">
 			<div class="ui nonref-publication items">
 
 				<div class="ui mini statistic">
