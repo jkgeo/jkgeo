@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body %}
+<h1>Add a Beer</h1>
+
+<h2>{{ note }}</h2>
+
+<form enctype="multipart/form-data" action="{% url 'add-beer' %}" method="post">
+    {% csrf_token %}
+    {{ beerform }}
+    <input type="submit" value="Add Beer">
+</form>
+{% endblock body %}

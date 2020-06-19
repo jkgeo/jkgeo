@@ -43,6 +43,7 @@ class Beer(models.Model):
 		choices=BEER_RATING_CHOICES,
 		null=True
 	)
+	date_had = models.DateField()
 	added = models.DateTimeField(editable=False)
 	modified = models.DateTimeField()
 	first_time = models.BooleanField(null=True)

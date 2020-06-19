@@ -8,11 +8,12 @@
 		<h3>Some Beers I've Had.</h3>
 	</div>
 	<div class="ui row">
-		<h3></h3>
+		<h3>Add one <a href="{% url 'add-beer' %}"> here </a>
+</h3>
 	</div>
 </div>
 
-<div class="ui centered three stackable cards">
+<div class="ui centered five stackable cards">
 	{% for beer in beers %}
 	<div class="ui raised card">
 		<div class="image">
@@ -31,7 +32,7 @@
 				<div class="ui star rating" data-rating="{{ beer.rating }}" data-max-rating="3" data-tooltip="{{ beer.get_rating_display }}"></div>
 			</div>			
 			<div class="description">
-				<p><i class="calendar plus icon"></i>{{ beer.added|date:"M d, Y" }}</p>
+				<p><i class="calendar plus icon"></i>{{ beer.date_had|date:"M d, Y" }}</p>
 				{% if beer.first_time %}
 				<p><i class="beer icon"></i>First Time</p>
 				{% endif %}
