@@ -103,14 +103,15 @@ WSGI_APPLICATION = 'config.wsgi.application'
 #     }
 # }
 
-# PostgreSQL 
-# [USER, PASS, NAME, HOST]
+# PostgreSQL
+# [USER, PASS, NAME, HOST, PORT]
 POSTGRES_SETTINGS = json.loads(get_env_variable('JKGEO_PG_SETTINGS'))
 
 pg_user = POSTGRES_SETTINGS[0]
 pg_pass = POSTGRES_SETTINGS[1]
 db_name = POSTGRES_SETTINGS[2]
 pg_host = POSTGRES_SETTINGS[3]
+pg_port = POSTGRES_SETTINGS[4]
 
 DATABASES = {
     'default': {
@@ -119,7 +120,7 @@ DATABASES = {
         'USER': pg_user,
         'PASSWORD': pg_pass,
         'HOST': pg_host,
-        'PORT': '',
+        'PORT': pg_port,
     }
 }
 
