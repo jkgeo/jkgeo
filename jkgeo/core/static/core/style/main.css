@@ -1,7 +1,7 @@
 /*main.css*/
 
 .selected.item {
-	text-decoration: underline !important;
+	font-style: italic;
 }
 
 a {

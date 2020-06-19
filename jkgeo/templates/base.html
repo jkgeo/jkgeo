@@ -20,6 +20,7 @@
 
 <body>
 
+<div class="ui header-menu container">
 {% block menu %}
 	<div class="ui four item secondary menu">
 		<a class="header item" href="{% url 'home' %}">home</a>
@@ -28,11 +29,12 @@
 		<a class="header item" href="{% url 'resume' %}">resume</a>
 	</div>
 {% endblock menu %}
-
-	<div class="ui main-content container">
-	{% block body %}
-	{% endblock body %}
-	</div>
+</div>
+<br>
+<div class="ui main-content container">
+{% block body %}
+{% endblock body %}
+</div>
 
 {% block footer %}
 	<div class="ui footer centered grid">
