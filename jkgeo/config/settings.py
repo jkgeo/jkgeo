@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
-import os, json
+import os, json, platform
 import osgeo
 # Normally you should not import ANYTHING from Django directly
 # into your settings, but ImproperlyConfigured is an exception.
@@ -173,9 +173,9 @@ GDAL SETTINGS
 """
 
 # For Windows
-
-GDAL_ROOT = os.path.dirname(osgeo.__file__)
-os.environ['GDAL_DATA'] = os.path.join(GDAL_ROOT, 'data', 'gdal')
-os.environ['PROJ_LIB'] = os.path.join(GDAL_ROOT, 'data', 'proj')
-os.environ['PATH'] = GDAL_ROOT + ';' + os.environ['PATH']
-GDAL_LIBRARY_PATH = os.path.join(GDAL_ROOT, 'gdal204.dll')
+if platform.system() == 'Windows':
+    GDAL_ROOT = os.path.dirname(osgeo.__file__)
+    os.environ['GDAL_DATA'] = os.path.join(GDAL_ROOT, 'data', 'gdal')
+    os.environ['PROJ_LIB'] = os.path.join(GDAL_ROOT, 'data', 'proj')
+    os.environ['PATH'] = GDAL_ROOT + ';' + os.environ['PATH']
+    GDAL_LIBRARY_PATH = os.path.join(GDAL_ROOT, 'gdal204.dll')
