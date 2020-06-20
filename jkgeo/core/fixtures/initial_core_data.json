@@ -1,0 +1,1 @@
+[{"model": "core.project", "pk": 1, "fields": {"name": "Beers", "type": "Personal", "visibility": 0, "description": "Trying to catalog some of the beers I've had."}}, {"model": "core.project", "pk": 2, "fields": {"name": "Recipes", "type": "Personal", "visibility": 1, "description": "Cataloging good recipes."}}]

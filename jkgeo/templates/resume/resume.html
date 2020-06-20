@@ -27,11 +27,11 @@
 				  <div class="ui divider"></div>
 				  <div class="label">
 				    <a class="" href="mailto:jfkeniston@gmail.com">jfkeniston@gmail.com</a>
-				  </div>				  
+				  </div>
 				</div>
 			</div>
 			<div class="docs">
-				{% for doc in docs %}			
+				{% for doc in docs %}
 				<a class="ui black label" href="{{doc.file.url}}" target="_blank"><i class="download icon"></i>{{doc.name}}</a>
 				{% endfor %}
 			</div>
@@ -57,8 +57,8 @@
 					<div class="content">
 						<div class="header">{{ degree.type }} {{ degree.major }}</div>
 						<span class="ui right floated">{{ degree.awarded|date:"F, Y" }}</span>
-						<div class=""> 
-							<span class="">{{ degree.uni.name }}</span>       
+						<div class="">
+							<span class="">{{ degree.uni.name }}</span>
 							<span class="ui right floated">{{ degree.uni.city }}, {{ degree.uni.state }}</span>
 						</div>
 						<div class="description">
@@ -116,7 +116,7 @@
 						</div>
 						<div class="extra">
 							{% for resource in job.resources %}
-								<a class="ui red label" href="{{resource.link}}" target="_blank">{{resource.name}}</a>
+								<a class="ui red label" href="{{resource.link}}" target="_blank"><i class="linkify icon"></i>{{resource.name}}</a>
 							{% endfor %}
 						</div>
 					</div>
@@ -184,7 +184,7 @@
 			<div class="ui divided skills items">
 				<div class="ui mini statistic">
 				  <div class="value">
-				  	Some Skills
+				  	Skills
 				  </div>
 				</div>
 				{% for category in skills %}
@@ -199,7 +199,7 @@
 								<span class="">{{ skill.name }} |</span>
 								{% endif %}
 							
-							{% endfor %}							
+							{% endfor %}
 						</div>
 					</div>
 				</div>
@@ -230,8 +230,8 @@
 							{{position.start | date:"F, Y"}} - {% if position.current %}Present
 							{% else %}{{position.end | date:"F, Y"}}{% endif %}
 						</div>
-						<div class=""> 
-							<span class="meta">{{ position.employer.name }}</span>       
+						<div class="">
+							<span class="meta">{{ position.employer.name }}</span>
 							<span class="ui right floated">{{ position.employer.city }}, {{ position.employer.state }}</span>
 						</div>
 						<div class="">
