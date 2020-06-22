@@ -119,6 +119,22 @@
 								<a class="ui red label" href="{{resource.link}}" target="_blank"><i class="linkify icon"></i>{{resource.name}}</a>
 							{% endfor %}
 						</div>
+							{% if job.awards %}
+						<div class="description">
+						  <div class="ui accordion">
+  							{% for award in job.awards %}
+  							<div class="title">
+                  <!--<i class="dropdown icon"></i>-->
+                  <i class="trophy icon"></i> {{award.name}}
+                  <span class="ui right floated">{{ award.awarded }}</span>
+                </div>
+                <div class="content">
+                    <p class="transition hidden">{{award.desc}}</p>
+                </div>
+  							{% endfor %}
+  						</div>
+  					</div>
+  						{% endif %}
 					</div>
 				</div>
 				{% endif %}

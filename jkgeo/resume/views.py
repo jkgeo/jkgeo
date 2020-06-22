@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Job, Accomplishment, Employer, Document, \
+from .models import Job, Accomplishment, Employer, Document, Award, \
 Resource, Degree, Skill, SkillCategory, Service, Presentation, Publication
 
 
@@ -26,6 +26,8 @@ def resume(request):
 		job_dict['accomplishments'] = []
 		accs = Accomplishment.objects.filter(job=job).order_by('order')
 		resources = Resource.objects.filter(job=job).order_by('order')
+		awards = Award.objects.filter(job=job).order_by('order')
+		
 		for acc in accs:
 			job_dict['accomplishments'].append(acc.desc)
 
@@ -40,6 +42,8 @@ def resume(request):
 			resource_list.append(resource_dict)
 		
 		job_dict['resources'] = resource_list
+		job_dict['awards'] = awards
+		
 		employment.append(job_dict)
 
 	skills = []
