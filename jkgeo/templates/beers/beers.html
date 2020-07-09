@@ -7,13 +7,10 @@
 	<div class="ui row">
 		<h3>Some Beers I've Had.</h3>
 	</div>
-	<div class="ui row">
-		<h3>Add one <a href="{% url 'add-beer' %}"> here </a>
-</h3>
-	</div>
+  <br>
 </div>
 
-<div class="ui centered five stackable cards">
+<div class="ui centered four stackable cards">
 	{% for beer in beers %}
 	<div class="ui raised card">
 		<div class="image">
@@ -28,9 +25,9 @@
 			<div class="description">
 				<p>ABV: {{ beer.abv }}%</p>
 			</div>
-			<div class="meta"> 
+			<div class="meta">
 				<div class="ui star rating" data-rating="{{ beer.rating }}" data-max-rating="3" data-tooltip="{{ beer.get_rating_display }}"></div>
-			</div>			
+			</div>
 			<div class="description">
 				<p><i class="calendar plus icon"></i>{{ beer.date_had|date:"M d, Y" }}</p>
 				{% if beer.first_time %}
@@ -40,5 +37,21 @@
 		</div>
 	</div>
 	{% endfor %}
+	{% if user.is_authenticated %}
+	<a class="ui raised card" href="{% url 'add-brewery' %}">
+	  <div class="image">
+		  <img src="{% static '/beers/beer.jpg' %}">
+		</div>
+		<div class="ui center aligned content">
+  	  <div>
+        <i class="add icon"></i>
+        Add Beer
+      </div>
+    </div>
+  </a>
+	{% endif %}
+	
 </div>
+
 {% endblock body %}
+

@@ -169,10 +169,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
+
 """
 GDAL SETTINGS
 """
-
 # For Windows
 if platform.system() == 'Windows':
     GDAL_ROOT = os.path.dirname(osgeo.__file__)
@@ -180,3 +180,7 @@ if platform.system() == 'Windows':
     os.environ['PROJ_LIB'] = os.path.join(GDAL_ROOT, 'data', 'proj')
     os.environ['PATH'] = GDAL_ROOT + ';' + os.environ['PATH']
     GDAL_LIBRARY_PATH = os.path.join(GDAL_ROOT, 'gdal204.dll')
+
+
+# Redirect to home URL after login (Default redirects to /accounts/profile/)
+LOGIN_REDIRECT_URL = 'projects'

@@ -8,17 +8,22 @@ a {
 	color: black;
 }
 
-a:hover, a.item:hover {
+.footer a:hover, .footer a.item:hover {
 	color: red !important;
-	background-color: white !important; 
+	background-color: white !important;
+}
+
+.header-menu a:hover, .header-menu a.item:hover {
+	color: red !important;
+	background-color: white !important;
 }
 
 .footer {
 /*	position: absolute;
 	bottom: 1em;*/
-	width: 100% !important;
-	margin: 0 !important;
-	padding: 1em !important;
+	/*width: 100% !important;*/
+	/*margin: 0 !important;*/
+	/*padding: 1em !important;*/
 	margin-top: 2em !important;
 }
 
@@ -49,4 +54,22 @@ a:hover, a.item:hover {
 
 .docs {
 	margin-bottom: 1em;
+}
+
+#add-brewery {
+  display: none;
+}
+
+#add-style {
+  display: none;
+}
+
+#select-sub-style {
+  display: none;
+}
+#add-sub-style {
+  display: none;
+}
+.step.active .title {
+  color: #21ba45 !important;
 }

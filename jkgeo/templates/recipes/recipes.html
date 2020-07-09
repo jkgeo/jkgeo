@@ -25,5 +25,19 @@
 		</div>
 	</a>
 {% endfor %}
+  {% if user.is_authenticated %}
+	<a class="ui raised card" href="">
+	  <div class="image">
+		  <img src="{% static '/recipes/cooking.png' %}">
+		</div>
+		<div class="ui center aligned content">
+  	  <div>
+        <i class="add icon"></i>
+        Add Recipe
+      </div>
+    </div>
+  </a>
+	{% endif %}
 </div>
+
 {% endblock body %}

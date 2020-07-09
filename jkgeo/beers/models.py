@@ -1,4 +1,4 @@
-from django.db import models
+from django.contrib.gis.db import models
 from django.utils import timezone
 
 class SubStyle(models.Model):
@@ -43,7 +43,7 @@ class Beer(models.Model):
 		choices=BEER_RATING_CHOICES,
 		null=True
 	)
-	date_had = models.DateField()
+	date_had = models.DateField(null=True)
 	added = models.DateTimeField(editable=False)
 	modified = models.DateTimeField()
 	first_time = models.BooleanField(null=True)

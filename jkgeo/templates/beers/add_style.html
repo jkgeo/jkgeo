@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body %}
+<div class="ui three top attached steps">
+  <a class="link step" href="{% url 'add-brewery' %}">
+    <i class="map icon"></i>
+    <div class="content">
+      <div class="title">Brewery</div>
+      <div class="description">Where is the beer from?</div>
+    </div>
+  </a>
+  <a class="active link step" href="{% url 'add-style' %}">
+    <i class="dna icon"></i>
+    <div class="content">
+      <div class="title">Style</div>
+      <div class="description">What type of beer is it?</div>
+    </div>
+  </a>
+  <div class="disabled link step">
+    <i class="beer icon"></i>
+    <div class="content">
+      <div class="title">Beer Details</div>
+      <div class="description">How did you like it?</div>
+    </div>
+  </div>
+</div>
+
+<div class="ui attached segment">
+  {% if note %}
+  <h2 style="color: red">{{ note }}</h2>
+  {% endif %}
+  <form id="select-style" class="ui style form" enctype="multipart/form-data" action="{% url 'add-style' %}" method="post">
+    
+    {% csrf_token %}
+    
+    <div class="ui field">
+      <label>Select Style</label>
+      <select name="select-style" class="ui fluid style dropdown" form="select-style">
+        <option value="-1">Select From List</option>
+        <option value="0">Add A New Style</option>
+        {% for style in styles %}
+        <option value="{{ style.id }}">{{ style.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    
+    <div id="add-style">
+      {{ styleform }}
+    </div>
+    <br>
+    <br>
+    <div class="ui centered grid">
+      <button id="show-sub-style" class="ui labeled icon button" type="button">
+        <i class="plus sub-style icon"></i>
+        <span>Add Sub-Style</span>
+      </button>
+    </div>
+    <br>
+    <br>
+    <div id="select-sub-style">
+      <div class="ui field">
+        <label>Select Sub-Style</label>
+        <select name="select-sub-style" class="ui fluid substyle dropdown" form="select-style">
+          <option value="-1">Select From List</option>
+          <option value="0">Add A New Sub-Style</option>
+          {% for substyle in substyles %}
+          <option value="{{ substyle.id }}">{{ substyle.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+  
+    <br>
+    <div id="add-sub-style">
+      {{ substyleform }}
+    </div>
+    
+    <br>
+    <input class="ui fluid primary button" type="submit" value="Next">
+  </form>
+</div>
+{% endblock body %}

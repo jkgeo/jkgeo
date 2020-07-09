@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body %}
+<div class="ui three top attached steps">
+  <a class="active link step" href="{% url 'add-brewery' %}">
+    <i class="map icon"></i>
+    <div class="content">
+      <div class="title">Brewery</div>
+      <div class="description">Where is the beer from?</div>
+    </div>
+  </a>
+  <a class="disabled link step" href="">
+    <i class="dna icon"></i>
+    <div class="content">
+      <div class="title">Style</div>
+      <div class="description">What type of beer is it?</div>
+    </div>
+  </a>
+  <div class="disabled link step">
+    <i class="beer icon"></i>
+    <div class="content">
+      <div class="title">Beer Details</div>
+      <div class="description">How did you like it?</div>
+    </div>
+  </div>
+</div>
+<div class="ui attached segment">
+  <form id="select-brewery" class="ui form" enctype="multipart/form-data" action="{% url 'add-brewery' %}" method="post">
+    {% csrf_token %}
+    
+    <div class="ui field">
+      <label>Select Brewery</label>
+      <select name="select-brewery" class="ui fluid brewery dropdown" form="select-brewery">
+        <option value="">Select From List</option>
+        <option value="add">Add A New Brewery</option>
+        {% for brewery in breweries %}
+        <option value="{{ brewery.id }}">{{ brewery.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    
+    <div class="ui field">
+      <input id="select-submit" class="ui fluid primary button" type="submit" value="Next">
+    </div>
+    
+  </form>
+  <br>
+  <form id="add-brewery" class="ui form" enctype="multipart/form-data" action="{% url 'add-brewery' %}" method="post">
+      
+      {% csrf_token %}
+      {{ breweryform }}
+      <div class="ui field">
+        <br>
+        <input class="ui fluid primary button" type="submit" value="Next">
+      </div>
+      
+  </form>
+
+</div>
+{% endblock body %}

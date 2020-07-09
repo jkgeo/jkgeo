@@ -4,7 +4,7 @@ from .models import Recipe, Quantity, Step, Note
 
 def recipeList(request):
 	recipes = Recipe.objects.all()
-	context = {'recipes': recipes}	
+	context = {'recipes': recipes}
 	return render(request, 'recipes/recipes.html', context)
 
 
@@ -15,10 +15,10 @@ def recipeDetail(request, recipe_slug):
 		steps = Step.objects.filter(recipe=recipe).order_by('number')
 		notes = Note.objects.filter(recipe=recipe).order_by('number')
 		ingredients = recipe.ingredients.all()
-		context['details'] = []		
+		context['details'] = []
 		for ingredient in ingredients:
 			ing = {}
-			q = Quantity.objects.get(recipe=recipe, ingredient=ingredient)			
+			q = Quantity.objects.get(recipe=recipe, ingredient=ingredient)
 			ing['ingredient'] = ingredient
 			ing['quantity'] = q
 			ing['steps'] = steps
