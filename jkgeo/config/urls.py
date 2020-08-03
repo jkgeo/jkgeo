@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from machina import urls as machina_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,6 +25,8 @@ urlpatterns = [
     path('posts/', include('posts.urls')),
     path('newsletter/', include('newsletter.urls')),
     path('resume/', include('resume.urls')),
+    path('forum/', include(machina_urls)),
     path('projects/beers/', include('beers.urls')),
-    path('projects/recipes/', include('recipes.urls'))
+    path('projects/recipes/', include('recipes.urls')),
+    path('projects/league/', include('league.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

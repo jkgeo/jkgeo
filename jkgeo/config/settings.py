@@ -56,7 +56,26 @@ INSTALLED_APPS = [
     'posts',
     'beers',
     'recipes',
-    'resume'
+    'resume',
+    'league',
+
+    # Machina dependencies:
+    'mptt',
+    'haystack',
+    'widget_tweaks',
+
+    # Machina apps:
+    'machina',
+    'machina.apps.forum',
+    'machina.apps.forum_conversation',
+    'machina.apps.forum_conversation.forum_attachments',
+    'machina.apps.forum_conversation.forum_polls',
+    'machina.apps.forum_feeds',
+    'machina.apps.forum_moderation',
+    'machina.apps.forum_search',
+    'machina.apps.forum_tracking',
+    'machina.apps.forum_member',
+    'machina.apps.forum_permission',
 ]
 
 MIDDLEWARE = [
@@ -67,16 +86,20 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # Machina
+    'machina.apps.forum_permission.middleware.ForumPermissionMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
 
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 
+from machina import MACHINA_MAIN_TEMPLATE_DIR
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_DIR],
+        'DIRS': [TEMPLATE_DIR, MACHINA_MAIN_TEMPLATE_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -84,6 +107,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # Machina
+                'machina.core.context_processors.metadata'
             ],
         },
     },
@@ -124,6 +149,18 @@ DATABASES = {
     }
 }
 
+# Cache
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    },
+    'machina_attachments': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': '/tmp',
+    },
+}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -161,6 +198,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+from machina import MACHINA_MAIN_STATIC_DIR
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    MACHINA_MAIN_STATIC_DIR,
+]
+
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
@@ -184,3 +228,15 @@ if platform.system() == 'Windows':
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = 'projects'
+
+# haystack
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
+    },
+}
+
+# machina settings
+
+MACHINA_FORUM_NAME = 'john\'s forum'
