@@ -78,6 +78,8 @@ def addStyle(request):
         if sub_style_form.is_valid():
           new_sub_style = sub_style_form.save()
           request.session['sub_style'] = new_sub_style.pk
+    elif selected_sub_style == -1:
+        request.session['sub_style'] = None
         
     if selected_style > -1:
         return redirect('add-beer')
