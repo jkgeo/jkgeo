@@ -24,11 +24,14 @@
 <div class="ui centered three stackable cards">
 	{% if projects %}
 	{% for project in projects %}
-	<a class="ui raised card" href="/projects/{{ project.name|lower }}">
+	<a class="ui raised card" href="/projects/{{ project.slug }}">
+		<div class="image">
+			<img src="{{ project.thumbnail.url }}">
+		  </div>
 	  <div class="content">
 	    <div class="header">{{ project.name }}</div>
 	    <div class="meta">
-	      <span class="category">{{ project.type }}</span>
+	      <span class="category">{{ project.get_type_display }}</span>
 	    </div>
 	    <div class="description">
 	      <p>{{ project.description }}</p>
