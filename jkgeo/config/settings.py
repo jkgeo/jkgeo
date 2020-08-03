@@ -201,7 +201,7 @@ USE_TZ = True
 from machina import MACHINA_MAIN_STATIC_DIR
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "staticfiles"),
     MACHINA_MAIN_STATIC_DIR,
 ]
 
