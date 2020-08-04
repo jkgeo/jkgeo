@@ -38,7 +38,7 @@ SECRET_KEY = get_env_variable("JKGEO_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -58,6 +58,10 @@ INSTALLED_APPS = [
     'recipes',
     'resume',
     'league',
+    'library',
+
+    # django-storages
+    'storages',
 
     # Machina dependencies:
     'mptt',
@@ -201,15 +205,28 @@ USE_TZ = True
 from machina import MACHINA_MAIN_STATIC_DIR
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "staticfiles"),
     MACHINA_MAIN_STATIC_DIR,
 ]
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Media files
+"""
+MEDIA SETTINGS
+"""
+USE_S3 = True
 
+if USE_S3:
+# AWS S3 Settings
+    AWS_ACCESS_KEY_ID = get_env_variable('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = get_env_variable('AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = get_env_variable('AWS_STORAGE_BUCKET_NAME')
+    AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+    AWS_S3_OBJECT_PARAMETERS = {
+        'CacheControl': 'max-age=86400',
+    }
+    DEFAULT_FILE_STORAGE = 'config.storage_backends.MediaStorage'
+# Local Media files
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
