@@ -38,7 +38,7 @@ SECRET_KEY = get_env_variable("JKGEO_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['jfkeniston.com', 'www.jfkeniston.com', 'localhost']
 
 
 # Application definition

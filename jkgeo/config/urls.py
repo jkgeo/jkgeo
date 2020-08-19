@@ -28,5 +28,6 @@ urlpatterns = [
     path('forum/', include(machina_urls)),
     path('projects/beers/', include('beers.urls')),
     path('projects/recipes/', include('recipes.urls')),
-    path('projects/league/', include('league.urls'))
+    path('projects/low-energy-league/', include('league.urls')),
+    path('projects/library/', include('library.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% load core_extras %}
+
 {% block menu %}
 	<div class="ui four item secondary menu">
 		<a class="header item" href="{% url 'home' %}">home</a>
@@ -23,22 +25,51 @@
 
 <div class="ui centered three stackable cards">
 	{% if projects %}
-	{% for project in projects %}
-	<a class="ui raised card" href="/projects/{{ project.slug }}">
-		<div class="image">
-			<img src="{{ project.thumbnail.url }}">
-		  </div>
-	  <div class="content">
-	    <div class="header">{{ project.name }}</div>
-	    <div class="meta">
-	      <span class="category">{{ project.get_type_display }}</span>
-	    </div>
-	    <div class="description">
-	      <p>{{ project.description }}</p>
-	    </div>
-	  </div>
-	</a>
-	{% endfor %}
+		{% for project in projects %}
+			{% if project.visibility == 1 %}
+			<a class="ui raised card" href="/projects/{{ project.slug }}">
+				{% if project.thumbnail %}
+				<div class="image">
+					<img src="{{ project.thumbnail.url }}">
+				</div>
+				{% endif %}
+			<div class="content">
+				<div class="header">{{ project.name }}</div>
+				<div class="meta">
+				<span class="category">{{ project.get_type_display }}</span>
+				</div>
+				<div class="description">
+				<p>{{ project.description }}</p>
+				</div>
+			</div>
+			</a>
+			{% else %}
+				{% if user.is_authenticated %}
+					{% if project.visibility == 0 %}
+						{% if user|has_group:project.name or user.is_superuser %}
+						<a class="ui raised card" href="/projects/{{ project.slug }}">
+							{% if project.thumbnail %}
+							<div class="image">
+								<img src="{{ project.thumbnail.url }}">
+							</div>
+							{% endif %}
+							<div class="content">
+								<div class="header">{{ project.name }}</div>
+								<div class="meta">
+								<span class="category">{{ project.get_type_display }}</span>
+								</div>
+								<div class="description">
+								<p>{{ project.description }}</p>
+								</div>
+							</div>
+						</a>
+						{% endif %}
+					{% endif %}
+				{% endif %}
+			{% endif %}
+		{% endfor %}
+
+		
 	{% else %}
 	<div class="ui segment">
 		No Projects Available
