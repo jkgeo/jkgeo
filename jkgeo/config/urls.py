@@ -25,7 +25,7 @@ urlpatterns = [
     path('posts/', include('posts.urls')),
     path('newsletter/', include('newsletter.urls')),
     path('resume/', include('resume.urls')),
-    path('forum/', include(machina_urls)),
+    path('projects/forum/', include(machina_urls)),
     path('projects/beers/', include('beers.urls')),
     path('projects/recipes/', include('recipes.urls')),
     path('projects/low-energy-league/', include('league.urls')),
